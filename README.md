@@ -24,4 +24,6 @@ aux_losses.py # the typical load balancing losses used for MoEs
 
 
 ## Contact
-If you are interested in this effort, please reach out to us: Alex Hägele (alexander.hagele@epfl.ch), Martin Jaggi (martin.jaggi@epfl.ch).
+If you are interested in this effort, please reach out to us on the the Swiss AI slack :)
+
+Alex Hägele (alexander.hagele@epfl.ch), Martin Jaggi (martin.jaggi@epfl.ch).
