@@ -1,8 +1,12 @@
 """
 Simple MoE routing implementations that replace the MLP block in a standard transformer.
 References:
-
-
+1) Mistral Source for Mixtral MoEs: 
+https://github.com/mistralai/mistral-src
+2) ST-MoE:
+https://arxiv.org/abs/2202.08906
+3) Our notepad of MoE resources: 
+https://docs.google.com/document/d/1NuQ5jr7V-Jv1ui7p4KrxO_JTz-7bpYcYMmh49EeJ-QA/edit?usp=sharing
 """
 
 import torch
