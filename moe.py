@@ -104,9 +104,9 @@ class ExpertChoiceMoE(nn.Module):
         # note that selected experts will be the same for all orders:
         # softmax doesnt change top-k, but the weights are different
         if self.softmax_order == "softmax_topk":
-            all_probs = F.softmax(router_logits, dim=0, dtype=torch.float32)
-            # selection over tokens!
+            all_probs = F.softmax(router_logits, dim=-1, dtype=torch.float32)
             # weights and selected tokens: [num_experts, top_k]
+            # topk over tokens!
             weights, selected_tokens = torch.topk(all_probs.T, top_k)
         elif self.softmax_order == "topk_softmax":
             # weights and selected tokens: [num_experts, top_k]
@@ -127,8 +127,9 @@ class ExpertChoiceMoE(nn.Module):
         # results = torch.einsum("ijl,ij,ijd->ld", P, weights, experts_out)
 
         """ this is the naive loop version """
-        # need to loop through experts because of memory growing too large
-        # when doing everything in parallel?
+        # loop through experts because of memory growing too large
+        # when doing everything in parallel.
+        # also, more hackable :)
         results = torch.zeros_like(inputs_squashed)
         for i, expert in enumerate(self.experts):
             # [top_k]
